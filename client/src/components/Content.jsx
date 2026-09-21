@@ -1,8 +1,9 @@
-import { GitHubIcon, LinkedInIcon } from './Icons.jsx';
+import { CvIcon, GitHubIcon, LinkedInIcon } from './Icons.jsx';
 
 const LINKS = [
-  { label: 'GitHub', href: 'https://github.com/Thiago-Candia', Icon: GitHubIcon },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thiago-candia-23953b313/', Icon: LinkedInIcon },
+  { label: 'GitHub', href: 'https://github.com/Thiago-Candia', signal: 'code', Icon: GitHubIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thiago-candia-23953b313/', signal: 'profile', Icon: LinkedInIcon },
+  { label: 'CV', href: 'https://thiago-candia.github.io/curriculum-vitae-JS/', signal: 'cv', Icon: CvIcon },
 ];
 
 export default function Content() {
@@ -13,8 +14,8 @@ export default function Content() {
       <div className="tagline">Argentina &mdash; La Plata</div>
 
       <div className="links">
-        {LINKS.map(({ label, href, Icon }) => (
-          <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+        {LINKS.map(({ label, href, signal, Icon }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" data-signal={signal}>
             <Icon />
             {label}
           </a>
