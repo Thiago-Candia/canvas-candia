@@ -16,6 +16,7 @@ export const LINKS = {
   github: 'https://github.com/Thiago-Candia',
   linkedin: 'https://www.linkedin.com/in/thiago-candia-23953b313/',
   cv: 'https://thiago-candia.github.io/curriculum-vitae-JS/',
+  cvFile: '/cv/Thiago-Candia-CV.pdf',
 };
 
 export const NAV = [

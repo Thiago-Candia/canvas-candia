@@ -8,7 +8,7 @@ const CONTACTS = [
   { label: 'WhatsApp', value: PROFILE.phone, href: whatsappUrl(), Icon: WhatsAppIcon },
   { label: 'LinkedIn', value: 'thiago-candia', href: LINKS.linkedin, Icon: LinkedInIcon },
   { label: 'GitHub', value: 'Thiago-Candia', href: LINKS.github, Icon: GitHubIcon },
-  { label: 'CV', value: 'Ver currículum', href: LINKS.cv, Icon: CvIcon },
+  { label: 'CV', value: 'Descargar PDF', href: LINKS.cvFile, Icon: CvIcon, download: 'Thiago-Candia-CV.pdf' },
 ];
 
 export default function Contact() {
@@ -19,11 +19,12 @@ export default function Contact() {
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {CONTACTS.map(({ label, value, href, Icon }) => (
+        {CONTACTS.map(({ label, value, href, Icon, download }) => (
           <a
             key={label}
             href={href}
-            target={href.startsWith('mailto:') ? undefined : '_blank'}
+            target={download || href.startsWith('mailto:') ? undefined : '_blank'}
+            download={download}
             rel="noopener noreferrer"
             className="flex items-center gap-4 border border-accent/15 bg-panel/60 p-5 backdrop-blur transition hover:-translate-y-0.5 hover:border-accent/60"
           >
