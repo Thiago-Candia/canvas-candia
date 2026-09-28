@@ -41,7 +41,7 @@ export const ABOUT = {
 
 export const SKILLS = [
   { group: 'Frontend', items: ['JavaScript', 'React', 'HTML', 'CSS', 'Tailwind CSS'] },
-  { group: 'Backend', items: ['Python', 'Django', 'Django REST Framework', 'Node.js', 'Express'] },
+  { group: 'Backend', items: ['Python', 'Django', 'Node.js', 'Express'] },
   { group: 'Bases de datos', items: ['MongoDB', 'PostgreSQL', 'SQLite', 'SQL'] },
   { group: 'Herramientas', items: ['Git', 'GitHub', 'Linux/Ubuntu', 'WSL2', 'Postman'] },
 ];
