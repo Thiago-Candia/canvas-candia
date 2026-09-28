@@ -11,7 +11,17 @@ function ProfilePhoto() {
     <div className="avatar-ring mx-auto h-[17.5rem] w-[17.5rem] max-w-full rounded-full border-2 border-accent p-1.5">
       <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-panel">
         {PROFILE.image ? (
-          <img src={PROFILE.image} alt={`Foto de ${PROFILE.name}`} className="h-full w-full rounded-full object-cover" />
+          <picture>
+            <source srcSet={PROFILE.image.replace(/\.jpe?g$/i, '.webp')} type="image/webp" />
+            <img
+              src={PROFILE.image}
+              alt={`Foto de ${PROFILE.name}`}
+              width={280}
+              height={280}
+              fetchPriority="high"
+              className="h-full w-full rounded-full object-cover"
+            />
+          </picture>
         ) : (
           <span className="font-mono text-7xl font-medium tracking-widest text-muted" aria-label="Espacio para foto de perfil">
             TC
