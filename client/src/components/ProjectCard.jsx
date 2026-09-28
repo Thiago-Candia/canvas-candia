@@ -15,19 +15,20 @@ function initials(name) {
 // Mientras un proyecto no tenga `video` (ver public/videos/README.md), se
 // muestra un placeholder con las iniciales, en el mismo formato que el de
 // la foto del Hero.
-function ProjectMedia({ name, video, poster }) {
+function ProjectMedia({ name, video, videoWebm, poster }) {
   if (video) {
     return (
       <video
         className="aspect-video w-full bg-panel object-cover"
-        src={video}
         poster={poster || undefined}
         muted
         loop
         playsInline
-        preload="none"
+        preload="metadata"
         controls
       >
+        {videoWebm && <source src={videoWebm} type="video/webm" />}
+        <source src={video} type="video/mp4" />
         Tu navegador no soporta video HTML5.
       </video>
     );
@@ -42,10 +43,10 @@ function ProjectMedia({ name, video, poster }) {
   );
 }
 
-export default function ProjectCard({ name, summary, stack, features, video, poster, repo, demo }) {
+export default function ProjectCard({ name, summary, stack, features, video, videoWebm, poster, repo, demo }) {
   return (
     <article className="flex h-full flex-col border border-white/10 bg-panel/60 backdrop-blur transition hover:-translate-y-1 hover:border-accent/50">
-      <ProjectMedia name={name} video={video} poster={poster} />
+      <ProjectMedia name={name} video={video} videoWebm={videoWebm} poster={poster} />
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-xl font-extrabold text-white">{name}</h3>
