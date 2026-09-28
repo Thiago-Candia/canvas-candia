@@ -2,8 +2,8 @@
 
 Reglas estrictas, no sugerencias. Si algo no está permitido acá, no se usa.
 Vigentes ahora para **Header + Hero (`#inicio`) + Proyectos (`#proyectos`) +
-Skills (`#skills`)**. El resto (Sobre mí, Experiencia, Contacto) se audita
-después, una por una — no se tocan todas a la vez.
+Skills (`#skills`) + Sobre mí (`#sobre-mi`)**. El resto (Experiencia,
+Contacto) se audita después, una por una — no se tocan todas a la vez.
 
 ## 0. Rendimiento (esto sí aplica a todo el sitio)
 
