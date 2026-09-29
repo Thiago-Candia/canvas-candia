@@ -1,7 +1,7 @@
 [build]
   base = "client"
   command = "npm run build"
-  publish = "client/dist"
+  publish = "dist"
 
 # Assets con hash de contenido (Vite): pueden cachearse para siempre, un
 # cambio de contenido siempre genera un nombre de archivo distinto.
