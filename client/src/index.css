@@ -1,0 +1,100 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --color-bg: #05070a;
+  --color-panel: #08131a;
+  --color-accent: #36f0b0;
+  --color-muted: #7894a3;
+  --color-ink: #f4fbff;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased overflow-x-clip;
+  }
+
+  ::selection {
+    background: rgba(54, 240, 176, 0.3);
+  }
+}
+
+/* Fondo (gradiente + textura de ruido + grilla, formato de cv-js) */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-layer__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #003d1e 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, #001a0f 0%, transparent 55%),
+    linear-gradient(170deg, #001a0f 0%, #002d18 40%, #000000 100%);
+}
+
+.bg-layer__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.bg-layer__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(54, 240, 176, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 240, 176, 0.03) 1px, transparent 1px);
+  background-size: 3.75rem 3.75rem;
+}
+
+/* Avatar: anillo punteado animado alrededor de la foto (formato de cv-js) */
+.avatar-ring {
+  position: relative;
+}
+
+.avatar-ring::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem;
+  border-radius: 50%;
+  border: 1px dashed rgba(54, 240, 176, 0.3);
+  animation: avatar-spin 20s linear infinite;
+}
+
+@keyframes avatar-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-ring::before {
+    animation: none;
+  }
+}
+
+/* Carrusel de proyectos: mismo scroll nativo, sin la barra visible */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
