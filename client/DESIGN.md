@@ -2,8 +2,8 @@
 
 Reglas estrictas, no sugerencias. Si algo no está permitido acá, no se usa.
 Vigentes ahora para **Header + Hero (`#inicio`) + Proyectos (`#proyectos`) +
-Skills (`#skills`) + Sobre mí (`#sobre-mi`)**. El resto (Experiencia,
-Contacto) se audita después, una por una — no se tocan todas a la vez.
+Skills (`#skills`) + Sobre mí (`#sobre-mi`) + Experiencia (`#experiencia`)**.
+Queda **Contacto** — se audita después.
 
 ## 0. Rendimiento (esto sí aplica a todo el sitio)
 
@@ -81,4 +81,42 @@ pulsante, nada de easing exagerado.
 Un carrusel de cards puede romper el `max-w-6xl` y ocupar el ancho de la
 ventana (full-bleed) para que las cards se vean grandes de verdad. El
 eyebrow y el título de la sección se quedan en el contenedor estándar;
-solo el carrusel en sí rompe el ancho.
+solo el carrusel en sí rompe el ancho. Se logra con la prop `wide` de
+`Section` (renderiza `children` como hijo directo de `<section>`, que ya
+ocupa el 100% del body) — **nunca** con `w-[100vw]` + `calc(50%-50vw)`:
+ver regla 9.
+
+## 9. Responsive de verdad: probado, no asumido
+
+- **Nunca mezclar `vw` con `%`/`px` en el mismo cálculo** (el clásico
+  `width: 100vw; margin: calc(50% - 50vw)` para "romper" un contenedor).
+  `vw` incluye el ancho de la scrollbar y no se mueve igual que `%`/`px`
+  bajo zoom del navegador — a ciertos niveles de zoom terminan en números
+  distintos y el layout se desarma (cards gigantes o pegadas a un borde,
+  overflow horizontal). Si algo necesita ocupar el ancho real de la
+  ventana, se resuelve sacándolo del contenedor `max-w-6xl` (ver regla 8),
+  no calculando su ancho con `vw`.
+- **Ningún elemento de tamaño fijo (`w-[Npx]`, `h-[Nrem]`) dentro de un
+  grid o flex que pueda angostarse** (columnas `fr`, `1fr`/`0.9fr`, etc.).
+  Un tamaño fijo no se encoge cuando la columna que lo contiene se vuelve
+  más chica que él — se sale del layout. Se resuelve con `w-full` +
+  `max-w-[Npx]` (fluido hasta un techo) en vez de un ancho fijo, más
+  `aspect-square`/`aspect-video` si tiene que mantener proporción, y
+  `min-w-0` en el elemento de grid/flex que lo contiene.
+- **Toda sección nueva se prueba en un barrido real de anchos** — no solo
+  mobile/desktop — antes de darla por terminada: 320, 375, 640, 768, 800
+  (el punto flaco típico, justo arriba de un breakpoint), 1024, 1280,
+  1920, 2560 y también algo bien ancho (4000+, monitores grandes con
+  zoom out fuerte). `document.body.scrollWidth` no debe superar
+  `window.innerWidth` en ninguno (una diferencia de ~15px es la
+  scrollbar, no un bug).
+- **Una fila scrolleable (carrusel) que puede llegar a entrar entera en
+  pantalla** (cards con `max-w`, zoom out fuerte) se centra con
+  `[justify-content:safe_center]`, nunca con `justify-center` a secas:
+  `center` sin `safe` puede volver inalcanzable el primer ítem cuando el
+  contenido SÍ desborda (el navegador centra el overflow simétricamente
+  y el inicio real queda fuera de rango en `scrollLeft: 0`). Tampoco se
+  resuelve envolviendo la fila en un contenedor `w-max` + `mx-auto`: si
+  las cards tienen ancho en `%`, ese ancho pasa a depender de un
+  contenedor que a su vez depende de su contenido — circular, y los
+  porcentajes se disparan.

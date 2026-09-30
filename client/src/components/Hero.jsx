@@ -8,7 +8,7 @@ const secondaryButton =
 
 function ProfilePhoto() {
   return (
-    <div className="avatar-ring mx-auto h-[17.5rem] w-[17.5rem] max-w-full rounded-full border-2 border-accent p-1.5">
+    <div className="avatar-ring mx-auto aspect-square w-full min-w-0 max-w-[17.5rem] rounded-full border-2 border-accent p-1.5">
       <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-panel">
         {PROFILE.image ? (
           <picture>
