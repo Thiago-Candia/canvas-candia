@@ -12,8 +12,6 @@ function ChevronIcon({ direction }) {
 const arrowButton =
   'absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-white/15 bg-panel/90 text-ink backdrop-blur transition hover:border-white/30 hover:text-white disabled:pointer-events-none disabled:opacity-30';
 
-// Carrusel con scroll nativo (scroll-snap): sin animación por JS, funciona
-// con swipe táctil gratis y es liviano (ver DESIGN.md #0).
 export default function Carousel({ children, ariaLabel }) {
   const trackRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
@@ -43,11 +41,9 @@ export default function Carousel({ children, ariaLabel }) {
     const el = trackRef.current;
     if (!el) return;
     const item = el.querySelector('[data-carousel-item]');
-    const gap = 24; // gap-6
+    const gap = 24;
     const amount = (item ? item.getBoundingClientRect().width : el.clientWidth * 0.8) + gap;
     el.scrollBy({ left: dir * amount, behavior: 'smooth' });
-    // Respaldo del listener de 'scroll': algunos navegadores lo throttlean
-    // con la pestaña en segundo plano, y el scroll suave no tiene callback.
     window.setTimeout(updateEdges, 400);
   };
 
@@ -58,7 +54,7 @@ export default function Carousel({ children, ariaLabel }) {
         role="region"
         aria-label={ariaLabel}
         tabIndex={0}
-        className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-2 scroll-pl-6 scroll-pr-6"
+        className="no-scrollbar flex snap-x snap-mandatory [justify-content:safe_center] gap-6 overflow-x-auto px-6 pb-2 scroll-pl-6 scroll-pr-6"
       >
         {children}
       </div>

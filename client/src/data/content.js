@@ -29,7 +29,7 @@ export const NAV = [
 ];
 
 export const ABOUT = {
-  text: 'Desarrollador Full Stack en formación, con experiencia en proyectos académicos, personales y freelance utilizando React, Django, Node.js y bases de datos SQL/NoSQL. Busco incorporarme a un equipo de desarrollo donde pueda aportar valor, aprender buenas prácticas y crecer profesionalmente.',
+  text: 'Soy estudiante avanzado de la Tecnicatura en Programación en la UTN, cuento con experiencia entregando proyectos freelance reales a clientes. Hoy busco mi primer trabajo formal, en un equipo donde pueda trabajar con personas más experimentadas, ordenar los hábitos que armé trabajando solo y crecer con feedback real.',
   education: [
     { title: 'Tecnicatura Universitaria en Programación', place: 'UTN', detail: 'En curso, 2º año' },
     { title: 'Diplomatura Full Stack MERN', place: 'UTN', detail: '7 meses' },
@@ -47,10 +47,6 @@ export const SKILLS = [
   { group: 'Herramientas', items: ['Git', 'GitHub', 'Linux/Ubuntu', 'WSL2', 'Postman'] },
 ];
 
-// `repo` y `demo` son opcionales: si se completan, la tarjeta muestra los links.
-// `video`: ruta a un archivo en client/public/videos (ver el README ahí
-// dentro). `poster`: imagen de portada mientras no se reproduce. Ambos
-// null = la card muestra un placeholder con las iniciales del proyecto.
 export const PROJECTS = [
   {
     name: 'Yovistoasi',
@@ -103,7 +99,7 @@ export const PROJECTS = [
 export const EXPERIENCE = [
   {
     role: 'Full Stack Developer Jr',
-    place: 'Proyectos freelance y personales',
-    description: 'Desarrollo de aplicaciones web completas con React, Django y Node.js, desde el diseño de la base de datos hasta el despliegue.',
+    place: 'Proyectos freelance',
+    description: 'Desarrollo de aplicaciones web completas con React y Django, desde el diseño de la base de datos hasta el despliegue.',
   }
 ];
